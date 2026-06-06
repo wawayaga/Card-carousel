@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FiChevronRight, FiStar} from 'react-icons/fi';
+import { FiChevronLeft, FiChevronRight, FiStar} from 'react-icons/fi';
 
 const ProductCarousel = ({products}) => {
     const [currentIndex, setCurrentIndex] = useState(0);
@@ -58,7 +58,14 @@ const ProductCarousel = ({products}) => {
                                 className='absolute left-0 top-1/2 -translate-y-1/2 bg-white rounded-full shadow-md
                                 p-1 sm:p-2 z-10 hover:bg-gray-100'
                                 aria-label='Previous products'>
-                                    <FiChevronRight className='text-gray-700 text-lg sm:text-xl' />
+                                    <FiChevronLeft className='text-gray-700 text-lg sm:text-xl cursor-pointer' />
+                            </button>
+                            <button
+                                onClick={nextSlide}
+                                className='absolute right-0 top-1/2 -translate-y-1/2 bg-white rounded-full shadow-md
+                                p-1 sm:p-2 z-10 hover:bg-gray-100'
+                                aria-label='Next products'>
+                                    <FiChevronRight className='text-gray-700 text-lg sm:text-x cursor-pointer' />
                             </button>
                         </>
                     )
@@ -88,7 +95,7 @@ const ProductCard = ({product}) => {
                 }
             </div>
             <div className="p-3 sm:p-4">
-                <h3 className="font-semibold text-base sm:text-lg mb-1">
+                <h3 className="font-semibold text-base sm:text-lg mb-1 line-clamp-1">
                     {product.name}
                 </h3>
                 <div className='flex items-center mb-1 sm:mb-2'>
@@ -99,12 +106,12 @@ const ProductCard = ({product}) => {
                             fill='currentColor'
                             />
                     ))}
-                    <span>
+                    <span className="text-gray-600 text-xs ml-1">
                         ({product.reviewCount})
                     </span>
                 </div>
                 <div className="flex justify-between items-center">
-                    <div>
+                    <div className="">
                         {
                             product.originalPrice && (
                                 <span className="text-gray-400 line-through mr-1 sm:mr-2 text-xs sm:text-sm">
@@ -115,11 +122,11 @@ const ProductCard = ({product}) => {
                         <span className="font-bold text-base sm:text-lg">
                             ${product.price.toFixed(2)}
                         </span>
-                        <button className="bg-radial-[at_25%_25%] from-white to-blue-800 to-35% hover:to-blue-950
-                        text-white px-2 sm:px-3 py-1 sm:py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm">
-                            <a href="#">Add to Cart</a>
-                        </button>
                     </div>
+                    <button className="bg-blue-800 hover:bg-blue-950
+                    text-white px-2 sm:px-3 py-1 sm:py-2 rounded-lg sm:rounded-xl text-xs sm:text-sm">
+                        <a href="#">Add to Cart</a>
+                    </button>
                 </div>
             </div>
         </div>
